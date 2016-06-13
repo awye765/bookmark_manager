@@ -2,7 +2,9 @@ require 'capybara/rspec'
 require './app/models/link'
 require 'data_mapper'
 require 'dm-postgres-adapter'
-require 'rspec'
+require './app/app'
+
+Capybara.app = BookmarkManager
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
