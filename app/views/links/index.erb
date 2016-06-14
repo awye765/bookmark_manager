@@ -3,7 +3,12 @@
   <% @links.each do |link| %>
     <li>
       Title: <a href="<%= link.url %>" target="_blank"><%= link.title %></a>
+      <br>
       URL: <%= link.url %>
+      <br>
+      Tags: <% link.tags.each do |tag| %>
+            <%= tag.name %>
+            <% end %>
     </li>
   <% end %>
 </ul>
