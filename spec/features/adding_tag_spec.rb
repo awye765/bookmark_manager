@@ -1,4 +1,4 @@
-feature 'adding a tag' do
+feature 'Adding a tag' do
 
   scenario 'User can add a tag to a link' do
     add_link_one_tag
