@@ -5,9 +5,10 @@ source "https://rubygems.org"
 ruby '2.2.3'
 
 gem 'sinatra'
+gem 'sinatra-flash'
+gem 'sinatra-partial'
 gem 'rake'
 gem 'bcrypt'
-gem 'sinatra-flash'
 
 group :database do
   gem "data_mapper"
@@ -15,6 +16,7 @@ group :database do
 end
 
 group :test do
+  gem 'byebug'
   gem 'capybara'
   gem 'rspec'
   gem 'database_cleaner'
