@@ -59,4 +59,13 @@ feature 'User sign out' do
     expect(page).not_to have_content('Welcome, test@test.com')
   end
 
+feature "Resetting Password" do
+  scenario "When I forget my password I can see a alink to reset" do
+    visit '/sessions/new'
+    click_link "I'm an idiot and forgot my password"
+    expect(page).to have_content("Please enter your email address")
+  end
+
+end
+
 end
