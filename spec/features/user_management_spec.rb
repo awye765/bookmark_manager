@@ -130,4 +130,5 @@ feature "Resetting Password" do
     fill_in :password_confirmation, with: password_confirmation
     click_button "Submit"
   end
+
 end

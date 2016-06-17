@@ -10,6 +10,8 @@ gem 'sinatra-partial'
 gem 'rake'
 gem 'bcrypt'
 gem 'timecop'
+gem 'mailgun'
+gem 'mailgun-ruby'
 
 group :database do
   gem "data_mapper"
