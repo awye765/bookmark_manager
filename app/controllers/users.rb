@@ -23,4 +23,8 @@ class BookmarkManager < Sinatra::Base
     erb :'users/recover'
   end
 
+  post '/users/recover' do
+    erb :'users/acknowledgement'
+  end
+
 end

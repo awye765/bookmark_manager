@@ -59,6 +59,8 @@ feature 'User sign out' do
     expect(page).not_to have_content('Welcome, test@test.com')
   end
 
+end
+
 feature "Resetting Password" do
   scenario "When I forget my password I can see a alink to reset" do
     visit '/sessions/new'
@@ -66,6 +68,10 @@ feature "Resetting Password" do
     expect(page).to have_content("Please enter your email address")
   end
 
-end
-
+  scenario "When I enter my email I am todl to check my inbox" do
+    visit '/users/recover'
+    fill_in :email, with: "alice@example.com"
+    click_button "Submit"
+    expect(page).to have_content "Thanks, please check your inbox for the link"
+  end
 end
