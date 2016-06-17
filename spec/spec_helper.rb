@@ -12,6 +12,7 @@ require 'features/web_helper'
 require 'helpers/session'
 require 'sinatra/flash'
 require 'tilt/erb'
+require 'timecop'
 
 Capybara.app = BookmarkManager
 

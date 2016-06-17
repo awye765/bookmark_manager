@@ -9,6 +9,7 @@ gem 'sinatra-flash'
 gem 'sinatra-partial'
 gem 'rake'
 gem 'bcrypt'
+gem 'timecop'
 
 group :database do
   gem "data_mapper"

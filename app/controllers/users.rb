@@ -30,7 +30,10 @@ class BookmarkManager < Sinatra::Base
     end
 
     erb :'users/acknowledgement'
-   end
+  end
 
+  get '/users/reset_password' do
+    "Your token is invalid"
+  end
 
 end

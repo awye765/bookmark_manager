@@ -62,6 +62,14 @@ feature 'User sign out' do
 end
 
 feature "Resetting Password" do
+
+  before do
+    sign_up
+    Capybara.reset!
+  end
+
+  let!(:user) { User.first }
+
   scenario "When I forget my password I can see a alink to reset" do
     visit '/sessions/new'
     click_link "I'm an idiot and forgot my password"
@@ -74,7 +82,15 @@ feature "Resetting Password" do
   end
 
   scenario "user assigned a reset token when they recover their password" do
-    sign_up
     expect{ recover_password }.to change{ User.first.password_token }
   end
+
+  scenario "it doesn't allow you to use the token after an hour" do
+    recover_password
+    Timecop.travel(60 * 60 * 60) do
+      visit("/users/reset_password?token=#{user.password_token}")
+      expect(page).to have_content "Your token is invalid"
+    end
+  end
+
 end
