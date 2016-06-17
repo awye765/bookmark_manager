@@ -93,4 +93,10 @@ feature "Resetting Password" do
     end
   end
 
+  scenario "it asks for your new password when your token is valid" do
+    recover_password
+    visit("/users/reset_password?token=#{user.password_token}")
+    expect(page).to have_content "Please enter your new password"
+  end
+
 end
