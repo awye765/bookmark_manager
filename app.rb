@@ -5,12 +5,11 @@ require_relative 'data_mapper_setup'
 require 'sinatra/flash'
 
 class Bookmarks < Sinatra::Base
-  
+
   register Sinatra::Flash
 
   enable :sessions
   set :session_secret, 'super secret'
-
 
   get '/' do
     redirect '/links'
@@ -51,15 +50,15 @@ class Bookmarks < Sinatra::Base
     @user = User.create(email: params[:email],
                 password: params[:password],
                  password_confirmation: params[:password_confirmation])
-    
+
     if @user.save # #save returns true/false depending on whether the model is successfully saved to the database.
     session[:user_id] = @user.id
     redirect to('/links')
      else
-    flash.now[:notice] = "Password and confirmation password do not match"
+    flash.now[:errors] = @user.errors.full_messages
     erb :'users/new'
   end
-end 
+end
 
   helpers do
     def current_user

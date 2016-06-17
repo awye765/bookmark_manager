@@ -19,7 +19,7 @@ class User
 
 
   property :id, Serial
-  property :email, String, format: :email_address, required: true #validates_presence_of
+  property :email, String, format: :email_address, required: true, unique: true#validates_presence_of
   # this will store both the password and the salt
   # It's Text and not String because String holds
   # only 50 characters by default
@@ -39,6 +39,3 @@ class User
   end
 
 end
-
-
-
