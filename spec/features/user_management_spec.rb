@@ -132,3 +132,24 @@ feature "Resetting Password" do
   end
 
 end
+
+feature "Password recovery link" do
+  let!(:user) do
+    User.create(email: 'user@example.com',
+                password: 'secret1234',
+                password_confirmation: 'secret1234')
+  end
+  
+  before do
+     sign_up
+     Capybara.reset!
+     allow(SendRecoverLink).to receive(:call)
+   end
+
+  scenario 'it calls the SendRecoverLink service to send the link' do
+
+    expect(SendRecoverLink).to receive(:call).with(user)
+    recover_password
+  end
+
+end

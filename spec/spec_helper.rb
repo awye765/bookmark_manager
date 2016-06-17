@@ -13,6 +13,8 @@ require 'helpers/session'
 require 'sinatra/flash'
 require 'tilt/erb'
 require 'timecop'
+require 'mailgun'
+require './app/controllers/send_recover_link'
 
 Capybara.app = BookmarkManager
 
