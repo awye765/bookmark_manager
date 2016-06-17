@@ -68,10 +68,13 @@ feature "Resetting Password" do
     expect(page).to have_content("Please enter your email address")
   end
 
-  scenario "When I enter my email I am todl to check my inbox" do
-    visit '/users/recover'
-    fill_in :email, with: "alice@example.com"
-    click_button "Submit"
+  scenario "When I enter my email I am told to check my inbox" do
+    recover_password
     expect(page).to have_content "Thanks, please check your inbox for the link"
+  end
+
+  scenario "user assigned a reset token when they recover their password" do
+    sign_up
+    expect{ recover_password }.to change{ User.first.password_token }
   end
 end

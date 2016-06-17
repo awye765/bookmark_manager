@@ -24,7 +24,13 @@ class BookmarkManager < Sinatra::Base
   end
 
   post '/users/recover' do
+    user = User.first(email: params[:email])
+    if user
+      user.generate_token
+    end
+
     erb :'users/acknowledgement'
-  end
+   end
+
 
 end

@@ -1,4 +1,5 @@
 require 'bcrypt'
+require 'securerandom'
 
 class User
 
@@ -14,6 +15,7 @@ class User
   property :id, Serial
   property :email, String, format: :email_address, required: true, unique: true
   property :password_digest, String, length: 60
+  property :password_token, Text
 
   def password=(password)
     @password = password
@@ -27,5 +29,10 @@ class User
     else
       nil
     end
+  end
+
+  def generate_token
+    self.password_token = SecureRandom.hex
+    self.save
   end
 end

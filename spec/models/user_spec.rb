@@ -12,7 +12,13 @@ describe User do
     it "does not authenticate when given an incorrect password" do
       expect(User.authenticate(user.email, 'wrong_stupid_password')).to be_nil
     end
-    
+
+  end
+
+  context "password recovery" do
+    it "saves a password recovery token when we generate a token" do
+      expect{ user.generate_token }.to change{ user.password_token }
+    end
   end
 
 end
